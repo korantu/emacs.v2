@@ -1,0 +1,1 @@
+ln -s <path-to-repo>/.emacs ~/.emacs
