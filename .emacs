@@ -142,6 +142,10 @@
 
 ;; Org-mode
 (global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c -") 'helm-org-agenda-files-headings)
+(add-hook 'org-mode-hook (lambda () (local-set-key (kbd "C-c -") 'helm-org-agenda-files-headings)))
+
 
 (setq org-link-abbrev-alist
       '(
