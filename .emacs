@@ -151,4 +151,9 @@
 
 ;; Next in  helm-ag; sounds cool.
 
+;; Magit
+(if (fboundp 'magit-status)
+    (global-set-key (kbd "C-x g") 'magit-status)
+  (message "Magit is not installed"))
+
 (switch-to-buffer "*scratch*")
