@@ -1,1 +1,2 @@
-ln -s <path-to-repo>/.emacs ~/.emacs
+#in the repo:
+ln -s `pwd`/.emacs ~/.emacs

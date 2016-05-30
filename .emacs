@@ -6,6 +6,9 @@
 ;; Yes-or-No
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+;; No startup screen
+(setq inhibit-startup-message t)
+
 ;; Highlight current line
 (global-hl-line-mode 1)
 
@@ -111,8 +114,8 @@
       (add-hook 'go-mode-hook 'my-go-mode-hook)
 
 
-  ;; Go oracle
-  (load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el"))
+      ;; Go oracle
+      (load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el"))
 
   ;; Else
   ( message "Please install GO / set up GOPATH to use go"))
@@ -147,3 +150,5 @@
 	))
 
 ;; Next in  helm-ag; sounds cool.
+
+(switch-to-buffer "*scratch*")
