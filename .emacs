@@ -149,11 +149,19 @@
 	("ccm" . "https://ccm-q1labs.canlab.ibm.com:9449/ccm/web/projects/Security%20Intelligence#action=com.ibm.team.workitem.viewWorkItem&id=")
 	))
 
+(let
+    ((file-of-agenda-files "/tmp/org.list"))
+  (if (file-exists-p file-of-agenda-files)
+      (setq org-agenda-files file-of-agenda-files)
+    (message "file %s does not exist; make an org.sh script to generate it" file-of-agenda-files)))
+
 ;; Next in  helm-ag; sounds cool.
 
 ;; Magit
 (if (fboundp 'magit-status)
     (global-set-key (kbd "C-x g") 'magit-status)
   (message "Magit is not installed"))
+
+
 
 (switch-to-buffer "*scratch*")
