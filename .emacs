@@ -3,6 +3,9 @@
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 
+;; Yes-or-No
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 ;; Highlight current line
 (global-hl-line-mode 1)
 
@@ -75,9 +78,14 @@
 ;;; Go-related
 ;; tweaks
 
-(if (file-exists-p "/home/konsl/source/gopath")
+       
+(if (and
+     (file-exists-p "/home/konsl/source/gopath")
+     (file-exists-p "/usr/local/go/bin"))
     (progn 
       (setenv "GOPATH" "/home/konsl/source/gopath")
+      (setenv "PATH"
+	      (concat "/usr/local/go/bin:/home/konsl/source/gopath/bin:" (getenv "PATH")))
       
       (add-hook 'before-save-hook 'gofmt-before-save)
       
@@ -100,13 +108,14 @@
 					; Godef jump key binding
 	(local-set-key (kbd "M-.") 'godef-jump))
       
-      (add-hook 'go-mode-hook 'my-go-mode-hook))
+      (add-hook 'go-mode-hook 'my-go-mode-hook)
 
 
   ;; Go oracle
-  (load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
+  (load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el"))
 
-  ( message "Please set up GOPATH to use go"))
+  ;; Else
+  ( message "Please install GO / set up GOPATH to use go"))
 
 ;; shell mode
 
