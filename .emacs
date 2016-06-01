@@ -166,6 +166,22 @@
     (global-set-key (kbd "C-x g") 'magit-status)
   (message "Magit is not installed"))
 
+;; Work process
+(defun kdl-new-wi (x y) "Create a new WI"
+	    (interactive "sWI:\nsDescription:")
+	    (inkdl-create-wi x y))
 
+(defun inkdl-create-wi (wi description)
+  (let*
+      ((wi-place (concat "/home/konsl/wi/" wi))
+       (investigation (concat wi-place "/investigation.org"))
+       (title (format "* [[ccm:%s]] : %s" wi description)))
+    (progn
+      (message (format "Creating %s titled %s in %s" investigation title wi-place))
+      (if (not (file-exists-p wi-place))
+	  (mkdir wi-place))
+      (find-file investigation)
+      (insert title))))
 
+  
 (switch-to-buffer "*scratch*")
