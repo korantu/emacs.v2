@@ -174,7 +174,7 @@
 (defun inkdl-create-wi (wi description)
   (let*
       ((wi-place (concat "/home/konsl/wi/" wi))
-       (investigation (concat wi-place "/investigation.org"))
+       (investigation (concat wi-place "/xfile-" wi ".org"))
        (title (format "* [[ccm:%s]] : %s" wi description)))
     (progn
       (message (format "Creating %s titled %s in %s" investigation title wi-place))
