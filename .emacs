@@ -183,5 +183,34 @@
       (find-file investigation)
       (insert title))))
 
-  
+;; Anki
+(defun kdlin-replace (a b) "Replace a to b in buff"
+       (interactive "sA:\nsB:")
+       (save-excursion
+	 (goto-char (point-min))
+	 (replace-regexp a b)))
+
+(defun kdl-make-anki-entry (f b) "Make entry for Anki"
+       (interactive "sFront:\nsBack:")
+       (let* ((store "/home/konsl/projects/anki/to_import.txt")
+	      (front f)
+	      (back b)
+	      (tmp-buffer "anki-buffer")
+	      (now (current-buffer)))
+	 (switch-to-buffer "anki-space")
+	 (delete-region (point-max) (point-min))
+	 (insert (format "%s\t%s" front back))
+	 (kdlin-replace "<" "&lt;")
+	 (kdlin-replace ">" "&gt;")
+	 (kdlin-replace "\n" "<br/>")
+	 (kill-ring-save (point-min) (point-max))
+	 (find-file store)
+	 (goto-char (point-max))
+	 (insert "\n")
+	 (yank)
+	 (save-buffer)
+	 (switch-to-buffer now)))
+
+(global-set-key (kbd "C-c q") 'kdl-make-anki-entry)
+
 (switch-to-buffer "*scratch*")
