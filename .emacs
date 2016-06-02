@@ -3,6 +3,9 @@
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 
+;; General
+(setq tab-width 2)
+
 ;; Yes-or-No
 (defalias 'yes-or-no-p 'y-or-n-p)
 
