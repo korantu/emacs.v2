@@ -89,6 +89,10 @@
 ;; hippie expand
 (global-set-key (kbd "<f12>") 'hippie-expand)
 
+;; general keyboard stuff
+(global-set-key (kbd "<f5>") 'compile)
+(global-set-key (kbd "C-M-)") 'edit-last-kbd-macro)
+
 ;; from https://www.emacswiki.org/emacs/Yasnippet
 (defun shk-yas/helm-prompt (prompt choices &optional display-fn)
     "Use helm to select a snippet. Put this into `yas-prompt-functions.'"
@@ -150,7 +154,8 @@
       
       (add-hook 'go-mode-hook 'my-go-mode-hook)
 
-
+      ;; go playground
+      
       ;; Go oracle
       (load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el"))
 
