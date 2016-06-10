@@ -38,7 +38,8 @@
 (package-initialize) ;; You might already have this line
 
 ;;; Autocomplete
-(ac-config-default)
+(if (symbol-function 'ac-config-default)
+    (ac-config-default))
 
 
 ;; TRAMP
