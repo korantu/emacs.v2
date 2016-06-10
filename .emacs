@@ -154,8 +154,7 @@
       
       (add-hook 'go-mode-hook 'my-go-mode-hook)
 
-      ;; go playground
-      
+
       ;; Go oracle
       (load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el"))
 
