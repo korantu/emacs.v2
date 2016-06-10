@@ -90,7 +90,7 @@
 (global-set-key (kbd "<f12>") 'hippie-expand)
 
 ;; general keyboard stuff
-(global-set-key (kbd "<f5>") 'compile)
+(global-set-key (kbd "<f12>") 'compile)
 (global-set-key (kbd "C-M-)") 'edit-last-kbd-macro)
 
 ;; from https://www.emacswiki.org/emacs/Yasnippet
