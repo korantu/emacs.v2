@@ -4,8 +4,6 @@
 (scroll-bar-mode 0)
 
 ;; General
-(setq tab-width 2)
-
 ;; Yes-or-No
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -25,6 +23,10 @@
 
 ;; Server
 (server-start)
+
+;; Java mode
+(add-hook 'java-mode-hook (lambda () (setq tab-width 2)))
+
 
 ;; make it an editor
 (if (file-exists-p "/home/konsl/packages/emacs/bin/emacsclient")
