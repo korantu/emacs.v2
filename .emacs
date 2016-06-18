@@ -94,6 +94,7 @@
 ;; general keyboard stuff
 (global-set-key (kbd "<f12>") 'compile)
 (global-set-key (kbd "C-M-)") 'edit-last-kbd-macro)
+(global-set-key (kbd "C-c <f1>") 'org-clock-jump-to-current-clock)
 
 ;; from https://www.emacswiki.org/emacs/Yasnippet
 (defun shk-yas/helm-prompt (prompt choices &optional display-fn)
