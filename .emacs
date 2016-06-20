@@ -7,6 +7,10 @@
 ;; Yes-or-No
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+;; Google-this
+(if (symbol-function 'google-this-mode)
+    (google-this-mode 1))
+
 ;; No startup screen
 (setq inhibit-startup-message t)
 
