@@ -191,7 +191,7 @@
 ;; Org-mode
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c -") 'helm-org-agenda-files-headings)
+(global-set-key (kbd "C-c K") 'helm-org-agenda-files-headings)
 (add-hook 'org-mode-hook (lambda () (local-set-key (kbd "C-c -") 'helm-org-agenda-files-headings)))
 
 
@@ -199,6 +199,7 @@
       '(
 	("google"    . "http://www.google.com/search?q=")
 	("ccm" . "https://ccm-q1labs.canlab.ibm.com:9449/ccm/web/projects/Security%20Intelligence#action=com.ibm.team.workitem.viewWorkItem&id=")
+	("idas" . "https://rtp-rtc6.tivlab.raleigh.ibm.com:9443/jazz/web/projects/ISAM#action=com.ibm.team.workitem.viewWorkItem&id=")
 	))
 
 (let
@@ -213,6 +214,52 @@
 (if (fboundp 'magit-status)
     (global-set-key (kbd "C-x g") 'magit-status)
   (message "Magit is not installed"))
+
+;; NodeJS
+;; konsl@kdlbook:~$ sudo apt-get install nodejs nodejs-dev
+;; from :https://github.com/ananthakumaran/tide
+;; tide, web-mode
+
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  (company-mode +1))
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+
+;; formats the buffer before saving
+(add-hook 'before-save-hook 'tide-format-before-save)
+
+;; format options
+(setq tide-format-options '(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil))
+;; see https://github.com/Microsoft/TypeScript/blob/cc58e2d7eb144f0b2ff89e6a6685fb4deaa24fde/src/server/protocol.d.ts#L421-473 for the full list available options
+
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+;; Web mode
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string-equal "tsx" (file-name-extension buffer-file-name))
+              (setup-tide-mode))))
+
+;; JS
+(add-hook 'js2-mode-hook #'setup-tide-mode)
+
+;; JSX
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string-equal "jsx" (file-name-extension buffer-file-name))
+              (setup-tide-mode))))
 
 ;; Work process
 (defun kdl-new-wi (x y) "Create a new WI"
@@ -262,3 +309,4 @@
 (global-set-key (kbd "C-c q") 'kdl-make-anki-entry)
 
 (switch-to-buffer "*scratch*")
+
