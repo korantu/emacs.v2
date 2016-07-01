@@ -310,3 +310,5 @@
 
 (switch-to-buffer "*scratch*")
 
+;;
+(global-company-mode)
