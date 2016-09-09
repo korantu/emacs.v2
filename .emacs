@@ -326,6 +326,12 @@
 ;; Tags navigation, poor man version. Just search for a string in all org files.
 ;; 
 (defun search-here () (interactive)
-       (grep (format "cat /tmp/org.list | xargs grep  -nH -e  \" %s \"" (word-at-point))))
+       (grep (format "cat /tmp/org.list | xargs grep  -nH -e  %s" (word-at-point))))
 
 (global-set-key (kbd "C-c m")  'search-here)
+
+;; Goto MAP - where everything starts
+(setq kdl-map "/home/konsl/projects/map/map.org")
+
+(global-set-key (kbd "C-c M") (lambda () (interactive)
+				(find-file kdl-map)))
