@@ -31,6 +31,8 @@
 ;; Java mode
 (add-hook 'java-mode-hook (lambda () (setq tab-width 2)))
 
+;; javascript
+(add-hook 'js-mode-hook 'flymake-jslint-load)
 
 ;; make it an editor
 (if (file-exists-p "/home/konsl/packages/emacs/bin/emacsclient")
@@ -46,6 +48,7 @@
 ;;; Autocomplete
 (if (symbol-function 'ac-config-default)
     (ac-config-default))
+
 
 
 ;; TRAMP
@@ -191,6 +194,8 @@
 ;; Org-mode
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
+
+(setq helm-org-show-filename t)
 (global-set-key (kbd "C-c K") 'helm-org-agenda-files-headings)
 (add-hook 'org-mode-hook (lambda () (local-set-key (kbd "C-c -") 'helm-org-agenda-files-headings)))
 
@@ -210,6 +215,10 @@
 
 ;; Next in  helm-ag; sounds cool.
 
+;; Do something
+;; (let ((cmd (format "grep  -nH -e  %s `cat /tmp/org.list`" (word-at-point)))) (grep cmd))
+
+
 ;; Magit
 (if (fboundp 'magit-status)
     (global-set-key (kbd "C-x g") 'magit-status)
@@ -228,7 +237,8 @@
   (eldoc-mode +1)
   ;; company is an optional dependency. You have to
   ;; install it separately via package-install
-  (company-mode +1))
+  ;;(company-mode +1) // TODO resolve conflicts
+  )
 
 ;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
@@ -311,4 +321,11 @@
 (switch-to-buffer "*scratch*")
 
 ;;
-(global-company-mode)
+;;(global-company-mode)
+
+;; Tags navigation, poor man version. Just search for a string in all org files.
+;; 
+(defun search-here () (interactive)
+       (grep (format "cat /tmp/org.list | xargs grep  -nH -e  \" %s \"" (word-at-point))))
+
+(global-set-key (kbd "C-c m")  'search-here)
