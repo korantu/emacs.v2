@@ -202,6 +202,7 @@
 
 (setq org-link-abbrev-alist
       '(
+	("proj"    . "~/projects/")
 	("google"    . "http://www.google.com/search?q=")
 	("ccm" . "https://ccm-q1labs.canlab.ibm.com:9449/ccm/web/projects/Security%20Intelligence#action=com.ibm.team.workitem.viewWorkItem&id=")
 	("idas" . "https://rtp-rtc6.tivlab.raleigh.ibm.com:9443/jazz/web/projects/ISAM#action=com.ibm.team.workitem.viewWorkItem&id=")
