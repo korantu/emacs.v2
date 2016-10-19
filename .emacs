@@ -336,3 +336,9 @@
 
 (global-set-key (kbd "C-c M") (lambda () (interactive)
 				(find-file kdl-map)))
+
+;; #KPUB publish things online C-c p
+;;(global-set-key (kbd "C-c p")  (lambda () (interactive)
+;;				 (save-some-buffers 4)
+;;				 (save-excursion
+;;				   (shell-command "/home/konsl/projects/google_cloud/kpub.sh"))))
