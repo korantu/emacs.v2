@@ -128,6 +128,7 @@
 
 ;;; Modes automatic loading by extension
 (add-to-list 'auto-mode-alist '("\\.bash_aliases\\'" . shell-script-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . nxml-mode))
 
 ;;; Go-related
 ;; tweaks
